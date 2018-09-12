@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<script>
+var myapp = angular.module("mymodule",[]).
+    controller("mycontroller",function ($scope) {
+   var employee = [
+       {firstname:'Charan',lastname:'Kottapalli',gender:'male',age:'21'},
+       {firstname:'David',lastname:'Apple',gender:'male',age:'41'},
+       {firstname:'Sara',lastname:'Banana',gender:'female',age:'33'},
+       {firstname:'Bucky',lastname:'Roberts',gender:'female',age:'57'},
+       {firstname:'Jesus',lastname:'christ',gender:'male',age:'40'},
+   ] ;
+ var country = [
+     {name:'Jani',country:'Norway'},
+     {name:'Hege',country:'Sweden'},
+     {name:'Kai',country:'Denmark'}];
+   $scope.country = country;
+   $scope.employee = employee;
+});
+</script>
+<body  ng-app="mymodule" ng-controller="mycontroller">
+<table>
+    <thead>
+    <tr>
+        <td>Firstname</td>
+        <td>LastName</td>
+        <td>Gender</td>
+        <td>Age</td>
+    </tr>
+    <tr ng-repeat="x in employee">
+        <td>{{x.firstname}}</td>
+        <td>{{x.lastname}}</td>
+        <td>{{x.gender}}</td>
+        <td>{{x.age}}</td>
+    </tr>
+    </thead>
+</table>
+
+<div style="padding:10%;color:blue;">
+    <ul>
+        <li ng-repeat="x in country">
+            {{x.name}}
+            <ul>
+                <li ng-repeat="y in x.cities">
+                    {{y.name}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

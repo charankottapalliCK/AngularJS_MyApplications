@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    var myapp = angular.module("mymodule",[]).
+        controller("mycontroller",function ($scope) {
+        var facebook = [
+            {name:'videos',likes:0,dislikes:0},
+            {name:'photos',likes:0,dislikes:0},
+            {name:'boomerang',likes:0,dislikes:0},
+            {name:'live',likes:0,dislikes:0},
+            {name:'memories',likes:0,dislikes:0}
+        ];
+        $scope.facebook = facebook;
+        $scope.incrementlikes = function (likes) {
+            likes.likes++;
+        };
+        $scope.decrementlikes = function (likes) {
+            likes.dislikes++;
+        };
+    });
+</script>
+<body  ng-app="mymodule" ng-controller="mycontroller">
+<div style="padding: 10%;,color:orange;">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+        <th>Name</th>
+        <th>Likes</th>
+        <th>Dislikes</th>
+        <th>Likes/Dislikes</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="x in facebook">
+            <td>{{x.name}}</td>
+            <td>{{x.likes}}</td>
+            <td>{{x.dislikes}}</td>
+            <td><input type="button" value="like" ng-click = "incrementlikes(x)">
+            <input type="button" value="Dislike" ng-click = "decrementlikes(x)">
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

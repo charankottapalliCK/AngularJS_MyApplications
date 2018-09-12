@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../scripts/angular.js"></script>
+</head>
+    <title>Filters in AngularJS</title>
+</head>
+<script>
+    var myapp = angular.module("mymodule",[]).
+        controller("mycontroller",function ($scope) {
+       var employees = [
+           {name:'David',dateofbirth:new Date("November 30, 1989"),gender:'Male',salary:55984.78},
+           {name:'Sara',dateofbirth:new Date("October 2, 1972"),gender:'Female',salary:822566},
+           {name:'Pinky',dateofbirth:new Date("March 23, 1989"),gender:'Male',salary:31662},
+           {name:'Reddy',dateofbirth:new Date("December 7, 1983"),gender:'Female',salary:249627},
+           {name:'Arjun',dateofbirth:new Date("January 14, 1956"),gender:'Male',salary:162862.55},
+       ];
+      $scope.row_limit=2;
+       $scope.employees = employees;
+    });
+</script>
+<body ng-app="mymodule" ng-controller="mycontroller">
+Limit the number of rows you want
+<input type="number" step="1" min="0" max="5" ng-model = "row_limit" id="a">
+<div style="padding:10%; color:blue">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Salary</th>
+            <th>Salary</th>
+        </tr>
+        <tr ng-repeat="x in employees | limitTo:row_limit">
+            <td>{{x.name}}</td>
+            <td>{{x.dateofbirth|date:"dd/MM/yyyy"}}</td>
+            <td>{{x.gender|uppercase}}</td>
+            <td>{{x.salary|number:2}}</td>
+            <td>{{x.salary|currency:"&#8377;":1}}</td>
+        </tr>
+        </thead>
+    </table>
+
+</div>
+</body>
+</html>

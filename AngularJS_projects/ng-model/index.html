@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script>
+    var myapp = angular.module("myapp",[]).
+    controller("mycontroller",function ($scope) {
+        $scope.message = "Hello lets test the NG-MODEL directive...";
+        var employee = {
+            firstname:'Charan',
+            lastname:'Kottapalli',
+            gender:'male'
+        };
+        $scope.employee = employee;
+    });
+</script>
+<body ng-app="myapp" ng-controller="mycontroller">
+<!-- ng-model is ued for two way data binding
+ As the model changes the view is changed. and when the view is updated the model is also changed immediately. -->
+<input type="text" ng-model="greeting" placeholder="enter your message">
+<h3>
+{{message}}
+</h3>
+<h4>{{greeting}}</h4>
+
+<div style="padding:30px;border:2px solid green;">
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" ng-model="employee.firstname"> </td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" ng-model="employee.lastname"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type="text" ng-model="employee.gender"></td>
+        </tr>
+    </table>
+    <br><br>
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td>{{employee.firstname}}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{employee.lastname}}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>{{employee.gender}}</td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>

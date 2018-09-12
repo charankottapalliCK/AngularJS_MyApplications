@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myapp" ng-controller="mycontroller">
+
+<div style="color:orange;padding:40px;">
+    <h1>{{india.Name}}</h1>
+<img ng-src="{{india.src}}" alt="Indian national Flag"></img>
+    <h2>{{india.Year}}</h2>
+</div>
+<script>
+    var myapp = angular.module("myapp",[]).
+        controller("mycontroller",function ($scope) {
+        var india = {
+            Name:'India',
+            Year:'1947',
+            src : '../images/india.png'
+        };
+        $scope.india = india;
+    });
+</script>
+
+</body>
+</html>
