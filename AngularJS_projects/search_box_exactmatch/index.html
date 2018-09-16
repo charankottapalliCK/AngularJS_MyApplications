@@ -32,6 +32,22 @@
                 }
                 return '';
             }
+            /*$scope.search = function (item) {
+                if ($scope.searchText == undefined) {
+                    return true;
+                }
+                else {
+                    if (item.city.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1 ||
+                        item.name.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1) {
+                        return true;
+                    }
+                }
+
+                return false;
+            };*/
+
+
+
         });
     </script>
     <link rel="stylesheet" href="style.css">
@@ -40,28 +56,30 @@
 <div class="container">
     <div class="jumbotron">
         <form class="form-inline">
-        <input type="text" class="form-control" placeholder="Search Name" ng-model="searchtext">
+            <input type="text" class="form-control" placeholder="Search Name" ng-model="searchtext.name">
+            <input type="text" class="form-control" placeholder="Search City" ng-model="searchtext.city">
+            <input type="checkbox" ng-model="exact_match"> Exact match<br>
         </form>
         <!--filter:searchtext.city-- for only city-->
-<table class="table">
-    <thead>
-    <tr ng-model="sort_column">
-        <th ng-click="sortData('name')"> Name <div ng-class="getSortClass('name')"></div></th>
-        <th ng-click="sortData('dateofbirth')"> Date of Birth <div ng-class="getSortClass('dateofbirth')"></div></th>
-        <th ng-click="sortData('gender')"> Gender <div ng-class="getSortClass('gender')"></div></th>
-        <th ng-click="sortData('city')"> City <div ng-class="getSortClass('city')"></div></th>
-        <th ng-click="sortData('salary')"> Salary <div ng-class="getSortClass('salary')"></div></th>
-    </tr>
-    <tr ng-repeat="x in employees | orderBy:sort_column:reverseSort |filter:searchtext">
-        <td>{{x.name}}</td>
-        <td>{{x.dateofbirth|date:"dd/MM/yyyy"}}</td>
-        <td>{{x.gender|uppercase}}</td>
-        <td>{{x.city}}</td>
-        <td>{{x.salary|currency:"&#8377;":1}}</td>
-    </tr>
-    </thead>
-</table>
-</div>
+        <table class="table">
+            <thead>
+            <tr ng-model="sort_column">
+                <th ng-click="sortData('name')"> Name <div ng-class="getSortClass('name')"></div></th>
+                <th ng-click="sortData('dateofbirth')"> Date of Birth <div ng-class="getSortClass('dateofbirth')"></div></th>
+                <th ng-click="sortData('gender')"> Gender <div ng-class="getSortClass('gender')"></div></th>
+                <th ng-click="sortData('city')"> City <div ng-class="getSortClass('city')"></div></th>
+                <th ng-click="sortData('salary')"> Salary <div ng-class="getSortClass('salary')"></div></th>
+            </tr>
+            <tr ng-repeat="x in employees | orderBy:sort_column:reverseSort |filter:searchtext:exact_match">
+                <td>{{x.name}}</td>
+                <td>{{x.dateofbirth|date:"dd/MM/yyyy"}}</td>
+                <td>{{x.gender|uppercase}}</td>
+                <td>{{x.city}}</td>
+                <td>{{x.salary|currency:"&#8377;":1}}</td>
+            </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 </body>
 </html>

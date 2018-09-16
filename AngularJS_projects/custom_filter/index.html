@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../scripts/angular.js"></script>
+    <title>Custom Filter in AnguarJS</title>
+    <script>
+        var myapp = angular.module("myapp",[]);
+        myapp.filter("gender",function () {
+            return function (gender) {
+                switch (gender) {
+                    case 1: return "Male";
+                    case 2: return "Female";
+                    case 3: return "Not Disclosed";
+                    default: return "Gender Not found";
+                }
+
+            };
+        });
+            myapp.controller("mycontroller",function ($scope) {
+                var employees = [
+                    { name: "Ben", gender: 1, salary: 55000 },
+                    { name: "Sara", gender: 2, salary: 68000 },
+                    { name: "Mark", gender: 1, salary: 57000 },
+                    { name: "Pam", gender: 2, salary: 53000 },
+                    { name: "Todd", gender: 3, salary: 60000 }
+                ];
+                $scope.employees = employees;
+        }
+        );
+    </script>
+    <script src="../scripts/angular.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="mycontroller">
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Salary</th>
+    </tr>
+    </thead>
+    <tr ng-repeat="x in employees">
+        <td>{{x.name}}</td>
+        <td>{{x.gender | gender}}</td>
+        <td>{{x.salary}}</td>
+    </tr>
+</table>
+</body>
+</html>

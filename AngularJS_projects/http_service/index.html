@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Https Services</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../scripts/angular.js"></script>
+    <script src="script.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="mycontroller">
+<div class="container">
+    <div class="jumbotron">
+<input type="text" class="form-control" id="state">
+<input type="text" class="form-control" id="city">
+        <input type="submit" ng-click="getWeather()">
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Image</th>
+        <th>Temperature</th>
+        <th>Condition</th>
+        <th>Image</th>
+    </tr>
+    </thead>
+    {{error}}
+    <tr ng-repeat="x in weathers">
+        <td>{{x.FCTTIME.pretty}}</td>
+        <td>{{x.temp.english}}</td>
+        <td>{{x.condition}}</td>
+        <td><img ng-src="{{'x.icon_url'}}"></td>
+    </tr>
+</table>
+</div>
+</div>
+</body>
+</html>
